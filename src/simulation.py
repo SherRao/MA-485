@@ -6,11 +6,11 @@ from pygame import Vector2, Color;
 
 class Simulation:
     G = astropy.constants.G.value;
-    AU = 149.6e8 * 1000; # AU in meters
-    DAYS_PER_SECOND = 10;
+    AU = 1.496e8 * 1000
+    DAYS_PER_SECOND = 1;
     UNIVERSE_TIMESTEP = (60 * 60 * 24) * DAYS_PER_SECOND;
     UNIVERSE_SCALE_FACTOR = 250 / AU;
-    WIDTH, HEIGHT = (1280, 720);
+    WIDTH, HEIGHT = (1920, 1080);
 
     def __init__(self, screen, clock, running):
         self.screen = screen;
@@ -20,16 +20,18 @@ class Simulation:
         self.font = pygame.font.SysFont("Consolas", 18);
         self.debug = True;
 
+        # sun
         self.bodies.append(celestial_body.CelestialBody(
             self,
             "Sun",
             astropy.constants.M_sun.value,
-            100, #astropy.constants.R_sun.value * self.UNIVERSE_SCALE_FACTOR,
+            20, #astropy.constants.R_sun.value * self.UNIVERSE_SCALE_FACTOR,
             Vector2(0, 0),
             Vector2(0, 0),
             Color(253, 184, 19)
         ));
 
+        # earth
         self.bodies.append(celestial_body.CelestialBody(
             self,
             "Earth",
@@ -40,11 +42,23 @@ class Simulation:
             Color(40, 122, 184)
         ));
 
+        # mars
+        self.bodies.append(celestial_body.CelestialBody(
+            self,
+            "Mars",
+            6.39e23, #astropy.constants.M_mars.value,
+            10, # astropy.constants.R_mars.value * self.UNIVERSE_SCALE_FACTOR,
+            Vector2(2.279e11, 0),
+            Vector2(0, 24.077e3),
+            Color(184, 40, 40)
+        ));
+
+        # jupiter
         self.bodies.append(celestial_body.CelestialBody(
             self,
             "Jupiter",
             astropy.constants.M_jup.value,
-            20, # astropy.constants.R_jup.value * self.UNIVERSE_SCALE_FACTOR,
+            12, # astropy.constants.R_jup.value * self.UNIVERSE_SCALE_FACTOR,
             Vector2(7.785e11, 0),
             Vector2(0, 13.07e3),
             Color(156, 63, 48)
@@ -52,15 +66,11 @@ class Simulation:
 
         return;
 
-
     def tick(self):
         for body in self.bodies:
             body.tick();
-            print(body.name, body.position * self.UNIVERSE_SCALE_FACTOR);
 
-        print();
         return;
-
 
     def render(self):
         for body in self.bodies:
@@ -69,6 +79,10 @@ class Simulation:
         if(self.debug):
             self.render_debug_data();
 
+        return;
+
+    def scale(self, factor):
+        self.UNIVERSE_SCALE_FACTOR += factor/self.AU;
         return;
 
 
@@ -107,6 +121,8 @@ class Simulation:
         text = self.font.render(f"Scale: {str(self.UNIVERSE_SCALE_FACTOR)}", True, (255, 255, 255));
         self.screen.blit(text, (10, 190));
 
+        text = self.font.render(f"G: {str(self.G)}", True, (255, 255, 255));
+        self.screen.blit(text, (10, 210));
         return;
 
     def screen_to_real_coords(self, pos: Vector2):
@@ -126,4 +142,5 @@ class Simulation:
 
     def dispose(self):
         return;
+
 

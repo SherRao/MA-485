@@ -41,10 +41,11 @@ class CelestialBody:
         total_fx = 0;
         total_fy = 0;
         for body in self.simulation.bodies:
-            if (body != self):
-                fx, fy = self.calculate_gravitation_atraction_with(body);
-                total_fx += fx;
-                total_fy += fy;
+            if (body == self):
+                continue;
+            fx, fy = self.calculate_gravitation_atraction_with(body);
+            total_fx += fx;
+            total_fy += fy;
 
         self.velocity.x += total_fx / self.mass * self.simulation.UNIVERSE_TIMESTEP;
         self.velocity.y += total_fy / self.mass * self.simulation.UNIVERSE_TIMESTEP;
@@ -54,13 +55,9 @@ class CelestialBody:
 
 
     def calculate_gravitation_atraction_with(self, other_body):
-        other_pos = other_body.position;
-        dx = (other_pos.x - self.position.x);
-        dy = (other_pos.y - self.position.y);
+        dx = other_body.position.x - self.position.x;
+        dy = other_body.position.y - self.position.y;
         d = math.sqrt(dx ** 2 + dy ** 2);
-
-        mass = self.mass;
-        other_mass = other_body.mass;
 
         f = self.simulation.G * self.mass * other_body.mass / d ** 2;
         theta = math.atan2(dy, dx);
