@@ -278,122 +278,34 @@ class Simulation:
 
 
     def get_sun(self):
-        return CelestialBody(
-            self,
-            "Sun",
-            astropy.constants.M_sun.value,
-            20,
-            P_sun,
-            V_sun,
-            C_sun
-        );
+        return CelestialBody(self, "Sun", astropy.constants.M_sun.value, 20, P_sun, V_sun, C_sun);
 
     def get_mercury(self):
-        return CelestialBody(
-            self,
-            "Mercury",
-            M_mercury,
-            10,
-            P_mercury,
-            V_mercury,
-            C_mercury
-        );
+        return CelestialBody(self, "Mercury", M_mercury, 10, P_mercury, V_mercury, C_mercury);
 
     def get_venus(self):
-        return CelestialBody(
-            self,
-            "Venus",
-            M_venus,
-            10,
-            P_venus,
-            V_venus,
-            C_venus
-        );
+        return CelestialBody(self, "Venus", M_venus, 10, P_venus, V_venus, C_venus);
 
     def get_earth(self):
-        return CelestialBody(
-            self,
-            "Earth",
-            astropy.constants.M_earth.value,
-            10,
-            P_earth,
-            V_earth,
-            C_earth
-        );
+        return CelestialBody(self, "Earth", astropy.constants.M_earth.value, 10, P_earth, V_earth, C_earth);
 
     def get_moon(self):
-        return CelestialBody(
-            self,
-            "Moon",
-            M_moon,
-            5,
-            P_moon,
-            V_moon,
-            C_moon
-        );
+        return CelestialBody(self, "Moon", M_moon, 5, P_moon, V_moon, C_moon);
 
     def get_mars(self):
-        return CelestialBody(
-            self,
-            "Mars",
-            M_mars,
-            10,
-            P_mars,
-            V_mars,
-            C_mars
-        );
+        return CelestialBody(self, "Mars", M_mars, 10, P_mars, V_mars, C_mars);
 
     def get_jupiter(self):
-        return CelestialBody(
-            self,
-            "Jupiter",
-            astropy.constants.M_jup.value,
-            12,
-            P_jupiter,
-            V_jupiter,
-            C_jupiter
-        );
+        return CelestialBody(self, "Jupiter", astropy.constants.M_jup.value, 12, P_jupiter, V_jupiter, C_jupiter);
 
     def get_saturn(self):
-        return CelestialBody(
-            self,
-            "Saturn",
-            M_saturn,
-            10,
-            P_saturn,
-            V_saturn,
-            C_saturn
-        );
+        return CelestialBody(self, "Saturn", M_saturn, 10, P_saturn, V_saturn, C_saturn);
 
     def get_uranus(self):
-        return CelestialBody(
-            self,
-            "Uranus",
-            M_uranus,
-            10,
-            P_uranus,
-            V_uranus,
-            C_uranus
-        );
+        return CelestialBody(self, "Uranus", M_uranus, 10, P_uranus, V_uranus, C_uranus);
 
     def get_neptune(self):
-        return CelestialBody(
-            self,
-            "Neptune",
-            M_neptune,
-            10,
-            P_neptune,
-            V_neptune,
-            C_neptune
-        );
+        return CelestialBody(self, "Neptune", M_neptune, 10, P_neptune, V_neptune, C_neptune);
 
     def get_pluto(self):
-        return CelestialBody(
-            self,
-            "Pluto",
-            M_pluto,
-            5,
-            P_pluto,
-            V_pluto,
-            C_pluto
-        );
+        return CelestialBody(self, "Pluto", M_pluto, 5, P_pluto, V_pluto, C_pluto);
